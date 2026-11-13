@@ -28,8 +28,11 @@ object ScheduleParser {
         blocks.forEachIndexed { index, block ->
             val course = parseBlock(block, totalWeeks)
             if (course == null) {
-                val preview = block.replace("\n", " ").trim().take(22)
-                errors.add("第 ${index + 1} 段没认出来：$preview…")
+                // 只有一两行的通常是 AI 的寒暄/标题，不算错误
+                if (block.lines().count { it.isNotBlank() } >= 3) {
+                    val preview = block.replace("\n", " ").trim().take(22)
+                    errors.add("第 ${index + 1} 段没认出来：$preview…")
+                }
             } else {
                 list.add(course)
             }
