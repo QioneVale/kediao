@@ -153,10 +153,12 @@ object ScheduleParser {
         val weeks = TimeUtil.parseWeeks(weeksText, totalWeeks)
 
         var location = pick("地点", "教室", "场地", "上课地点")?.trim().orEmpty()
-        if (location.isBlank() || location == "无") location = "未填写"
+        if (location.isBlank() || location == "无" || location == "未知" || location == "-") location = "未填写"
 
         var teacher = pick("教师", "老师", "授课")?.trim().orEmpty()
-        if (teacher.isBlank() || teacher == "无") teacher = ""
+        if (teacher == "无" || teacher == "未知" || teacher == "未填写" || teacher == "未知教师" || teacher == "-") {
+            teacher = ""
+        }
 
         return Course(
             name = name,
@@ -305,7 +307,8 @@ object ScheduleParser {
             val weeks = TimeUtil.parseWeeks(weeksRaw.ifBlank { "1-$totalWeeks" }, totalWeeks)
 
             val location = firstNonBlank(o.optString("location"), o.optString("地点"), o.optString("教室")) ?: "未填写"
-            val teacher = firstNonBlank(o.optString("teacher"), o.optString("教师"), o.optString("老师")) ?: ""
+            var teacher = firstNonBlank(o.optString("teacher"), o.optString("教师"), o.optString("老师")) ?: ""
+            if (teacher == "未填写" || teacher == "未知" || teacher == "无" || teacher == "-") teacher = ""
 
             out.add(
                 Course(
