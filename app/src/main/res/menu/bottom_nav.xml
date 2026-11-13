@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nav_timetable"
+        android:icon="@drawable/ic_nav_timetable"
+        android:title="@string/tab_timetable" />
+    <item
+        android:id="@+id/nav_import"
+        android:icon="@drawable/ic_nav_import"
+        android:title="@string/tab_import" />
+    <item
+        android:id="@+id/nav_settings"
+        android:icon="@drawable/ic_nav_settings"
+        android:title="@string/tab_settings" />
+</menu>
