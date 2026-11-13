@@ -7,6 +7,7 @@ import android.graphics.Paint
 import android.graphics.Path
 import android.graphics.RectF
 import android.graphics.Typeface
+import android.text.TextPaint
 import android.text.TextUtils
 import android.util.AttributeSet
 import android.view.MotionEvent
@@ -65,12 +66,12 @@ class TimetableGridView @JvmOverloads constructor(
     }
     private val todayBgPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply { color = 0xFF4C6FFF.toInt() }
     private val blockPaint = Paint(Paint.ANTI_ALIAS_FLAG)
-    private val namePaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
+    private val namePaint = TextPaint(Paint.ANTI_ALIAS_FLAG).apply {
         color = Color.WHITE
         textSize = 11f * d
         typeface = Typeface.create(Typeface.DEFAULT, Typeface.BOLD)
     }
-    private val subPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
+    private val subPaint = TextPaint(Paint.ANTI_ALIAS_FLAG).apply {
         color = 0xFFEAF0FF.toInt()
         textSize = 9f * d
     }
